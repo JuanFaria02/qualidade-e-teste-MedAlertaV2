@@ -9,14 +9,14 @@ import backend.usuario.PessoaFisica;
 import backend.usuario.Uso;
 
 public class Gerenciador implements Runnable {
-    private static ArrayList<Uso> listaDeUsos = new ArrayList<Uso>();
-    private static PessoaFisica pessoa;
+    public static ArrayList<Uso> listaDeUsos = new ArrayList<Uso>();
+    public static PessoaFisica pessoa;
 
     public static void setPessoa(PessoaFisica p) {
         Gerenciador.pessoa = p;
     }
 
-    private static void atualizarUso(String nomeMedicamento, int dose, int qtd) {
+    public static void atualizarUso(String nomeMedicamento, int dose, int qtd) {
         int novaQtdDisponivel = 0;
         System.out.println(pessoa.getUsoListaUsoMedicamentos(nomeMedicamento));
         novaQtdDisponivel = qtd - dose;
@@ -29,7 +29,7 @@ public class Gerenciador implements Runnable {
         pessoa.atualizarQntRemediosListaUsoMedicamentos(nomeMedicamento, novaQtdDisponivel);
     }
 
-    private static int verificarIntervaloDoGerenciador() {
+    public static int verificarIntervaloDoGerenciador() {
         int menor = 24;
         if (listaDeUsos != null) {
             for (Uso uso : listaDeUsos) {
@@ -41,7 +41,7 @@ public class Gerenciador implements Runnable {
         return menor;
     }
 
-    private static boolean enviarNotificacao(String notificacao, Uso uso) {
+    public static boolean enviarNotificacao(String notificacao, Uso uso) {
         Runnable runNotify = () -> {
             boolean tomouRemedio = Notificacao.notificar(notificacao);
             if (tomouRemedio) {
@@ -56,7 +56,7 @@ public class Gerenciador implements Runnable {
         return false; //para que o programa continue
     }
 
-    private static boolean enviarNotificacaoCompra(Uso uso) {
+    public static boolean enviarNotificacaoCompra(Uso uso) {
         String notificacao = "Existem apenas " + uso.getQtdDisponivel() + " comprimidos do seu remédio "
                 + uso.getRemedio().getNome() + "\n" + "É nessário comprar mais para terminar seu tratamento!";
 
@@ -69,7 +69,7 @@ public class Gerenciador implements Runnable {
         return false; //para que o programa continue
     }
 
-    private static boolean verificarQtdRemedio(Uso uso) {
+    public static boolean verificarQtdRemedio(Uso uso) {
         boolean remedioAcabando = false;
         int qtd = uso.getQtdDisponivel();
         int duracao = uso.getDuracaoDoTratamento();
@@ -82,14 +82,14 @@ public class Gerenciador implements Runnable {
         return remedioAcabando;
     }
 
-    private static void atualizarDuracaoDeUso(Uso uso) {
+    public static void atualizarDuracaoDeUso(Uso uso) {
         if(uso.getDuracaoDoTratamento()==0) return;
         uso.setDuracaoDoTratamento(uso.getDuracaoDoTratamento() - 1);
         String strUso = uso.toString();
         FuncoesArquivos.alterarLinhaArquivo(pessoa.getNomeArquivoUsos(), uso.getRemedio().getNome(), strUso);
     }
 
-    private static void excluirUso(Uso uso) {
+    public static void excluirUso(Uso uso) {
         Gerenciador.pessoa.removerUsoNaListaUsoMedicamentos(uso.getRemedio().getNome());
     }
 
