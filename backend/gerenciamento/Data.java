@@ -27,7 +27,7 @@ public class Data {
     public static boolean ehMeiaNoite() {
         boolean meiaNoite = false;
         Calendar c = Calendar.getInstance();
-        int horaAtual = c.get(Calendar.HOUR_OF_DAY);
+        int horaAtual = c.get(Calendar.HOUR_OF_DAY); //0 → Adicionar 0 para fazer o teste em DataTest
 
         if(horaAtual == 0){
             // if(duracaoDoTratamentoAtualizada == false){
@@ -62,6 +62,8 @@ public class Data {
         if(hora == Data.ultimaVerficacaoHorario){
             verificacao = false;
         }
+        System.out.println("Ultima verificação horário: " + ultimaVerficacaoHorario);
+        System.out.println("Hora: " + hora);
         
         return verificacao;
     }
@@ -108,6 +110,8 @@ public class Data {
 
         return false;
     }
+
+    // Método get adicionado para tonar possível o teste dessa classe
 
     //main utilizada para fins de teste
     // public static void main(String[] args) {
