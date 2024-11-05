@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 import backend.dsdesktopnotify.DesktopNotify;
 
 public class Notificacao {
-    private static Integer option = -1;
+    public static Integer option = -1;
 
     // método chamado para enviar uma notificação ao usuário
     // o retorno é um true, caso o usuário tenha executado a ação notificada, e
@@ -52,5 +52,15 @@ public class Notificacao {
                 }
             }
         );
+    }
+    
+    // Método para obter o valor de option (apenas para teste)
+    public static Integer getOption() {
+        return option;
+    }
+
+    // Método para definir o valor de option (apenas para teste)
+    public static void setOption(Integer value) {
+        option = value;
     }
 }
