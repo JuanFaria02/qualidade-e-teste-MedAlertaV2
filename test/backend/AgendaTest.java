@@ -139,7 +139,7 @@ class AgendaTest {
             assertAll(
                 () -> assertNotNull(resultado, "A agenda resultante não deve ser nula."),
                 () -> assertEquals(2, resultado.getContatos().size(), "A agenda deve conter dois contatos."),
-                () -> verify(contatoMock, times(0)).getNome() // Para garantir que não haja chamadas extras inesperadas.
+                () -> verify(contatoMock, times(0)).getNome()
             );
         }
     }
@@ -159,7 +159,7 @@ class AgendaTest {
             assertAll(
                 () -> assertNotNull(resultado, "A agenda resultante não deve ser nula."),
                 () -> assertEquals(2, resultado.getContatos().size(), "A agenda deve conter duas farmácias."),
-                () -> verify(farmaciaMock, times(0)).getNome() // Para garantir que não haja chamadas extras inesperadas.
+                () -> verify(farmaciaMock, times(0)).getNome()
             );
         }
     }
@@ -179,7 +179,7 @@ class AgendaTest {
             assertAll(
                 () -> assertNotNull(resultado, "A agenda resultante não deve ser nula."),
                 () -> assertEquals(2, resultado.getContatos().size(), "A agenda deve conter dois médicos."),
-                () -> verify(medicoMockObj, times(0)).getNome() // Para garantir que não haja chamadas extras inesperadas.
+                () -> verify(medicoMockObj, times(0)).getNome()
             );
         }
     }
