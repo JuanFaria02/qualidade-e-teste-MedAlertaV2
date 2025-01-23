@@ -191,6 +191,29 @@ class AgendaTest {
     }
 
     @Test
+    public void adicionarContatoComDadosAleatoriosTest() {
+        for (int i = 0; i < 100; i++) {
+            String nome = "Contato" + i;
+            String telefone = String.format("12345678%02d", i);
+            PessoaFisica contatoAleatorio = new PessoaFisica(nome, telefone, nome + "@gmail.com", "123.456.789-00", "12345", endereco);
+
+            agenda.adicionarContato(contatoAleatorio);
+        }
+        assertEquals(100, agenda.getContatos().size());
+    }
+
+    @Test
+    public void adicionarAlterarRemoverContatoTest() {
+        agenda.adicionarContato(contato);
+        boolean alteracao = agenda.alterarTelContato("Teste nome", "111111111");
+        boolean remocao = agenda.removerContato("Teste nome");
+
+        assertTrue(alteracao, "A alteração deve retornar true.");
+        assertTrue(remocao, "A remoção deve retornar true.");
+        assertTrue(agenda.getContatos().isEmpty(), "A agenda deve estar vazia após remoção.");
+    }
+
+    @Test
     public void verificarOrdemDeContatosTest() {
         PessoaFisica contato1 = new PessoaFisica("B", "123456789", "b@gmail.com", "123.456.789-00", "12345", endereco);
         PessoaFisica contato2 = new PessoaFisica("A", "987654321", "a@gmail.com", "987.654.321-00", "54321", endereco);

@@ -35,11 +35,9 @@ public class Agenda {
     public boolean alterarNomeContato(String nome, String novoNome) {
         int pos = encontraContato(nome);
         if (pos == -1) {
-            System.out.println("Contato não encontrado! A alteração não foi realizada.");
             return false;
         } else {
             contatos.get(pos).setNome(novoNome);
-            System.out.println("O nome de " + contatos.get(pos).getNome() + " foi alterado!");
         }
         return true;
     }
@@ -48,7 +46,6 @@ public class Agenda {
     public boolean alterarTelContato(String nome, String novoTelefone) {
         int pos = encontraContato(nome);
         if (pos == -1) {
-            System.out.println("Contato não encontrado! A alteração não foi realizada.");
             return false;
         } else {
             contatos.get(pos).setTelefone(novoTelefone);
@@ -61,7 +58,6 @@ public class Agenda {
     public <T> boolean alterarParticularidadeContato(String nome, T novaParticularidade) {
         int pos = encontraContato(nome);
         if (pos == -1) {
-            System.out.println("Contato não encontrado! A alteração não foi realizada.");
             return false;
         } else {
             contatos.get(pos).setParticularidade(novaParticularidade);
@@ -75,7 +71,6 @@ public class Agenda {
     public boolean alterarEmailContato(String nome, String novoEmail) {
         int pos = encontraContato(nome);
         if (pos == -1) {
-            System.out.println("Contato não encontrado! A alteração não foi realizada.");
             return false;
         } else {
             contatos.get(pos).setEmail(novoEmail);
@@ -89,7 +84,6 @@ public class Agenda {
     public boolean removerContato(String nome) {
         int pos = encontraContato(nome);
         if (pos == -1) {
-            System.out.println("Contato não encontrado!");
             return false;
         } else {
             ArrayList<Pessoa> novaLista = this.getContatos();
