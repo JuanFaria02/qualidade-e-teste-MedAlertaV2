@@ -2,13 +2,14 @@ package backend;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import backend.farmacia.PessoaJuridica;
 import backend.usuario.Medico;
 import backend.usuario.PessoaFisica;
 
 public class Agenda {
-    private ArrayList<Pessoa> contatos = new ArrayList<>();
+    private List<Pessoa> contatos = new ArrayList<>();
 
     // encontra a posicao do contato na agenda
     private int encontraContato(String nome) {
@@ -27,7 +28,6 @@ public class Agenda {
             throw new IllegalArgumentException("É necessário informar um contato válido");
         } else {
             contatos.add(contato);
-            System.out.println("Contato Adicionado!");
         }
     }
 
@@ -35,11 +35,9 @@ public class Agenda {
     public boolean alterarNomeContato(String nome, String novoNome) {
         int pos = encontraContato(nome);
         if (pos == -1) {
-            System.out.println("Contato não encontrado! A alteração não foi realizada.");
             return false;
         } else {
             contatos.get(pos).setNome(novoNome);
-            System.out.println("O nome de " + contatos.get(pos).getNome() + " foi alterado!");
         }
         return true;
     }
@@ -48,11 +46,9 @@ public class Agenda {
     public boolean alterarTelContato(String nome, String novoTelefone) {
         int pos = encontraContato(nome);
         if (pos == -1) {
-            System.out.println("Contato não encontrado! A alteração não foi realizada.");
             return false;
         } else {
             contatos.get(pos).setTelefone(novoTelefone);
-            System.out.println("O telefone de " + contatos.get(pos).getNome() + " foi alterado!");
         }
         return true;
     }
@@ -61,12 +57,9 @@ public class Agenda {
     public <T> boolean alterarParticularidadeContato(String nome, T novaParticularidade) {
         int pos = encontraContato(nome);
         if (pos == -1) {
-            System.out.println("Contato não encontrado! A alteração não foi realizada.");
             return false;
         } else {
             contatos.get(pos).setParticularidade(novaParticularidade);
-            ;
-            System.out.println("O atributo de " + contatos.get(pos).getNome() + " foi alterado!");
         }
         return true;
     }
@@ -75,12 +68,9 @@ public class Agenda {
     public boolean alterarEmailContato(String nome, String novoEmail) {
         int pos = encontraContato(nome);
         if (pos == -1) {
-            System.out.println("Contato não encontrado! A alteração não foi realizada.");
             return false;
         } else {
             contatos.get(pos).setEmail(novoEmail);
-            ;
-            System.out.println("O endereço de " + contatos.get(pos).getNome() + " foi alterado!");
         }
         return true;
     }
@@ -89,10 +79,9 @@ public class Agenda {
     public boolean removerContato(String nome) {
         int pos = encontraContato(nome);
         if (pos == -1) {
-            System.out.println("Contato não encontrado!");
             return false;
         } else {
-            ArrayList<Pessoa> novaLista = this.getContatos();
+            List<Pessoa> novaLista = this.getContatos();
             
             for (Pessoa contato : this.getContatos()){
                 if (contato.getNome().equals(nome)){
@@ -111,30 +100,29 @@ public class Agenda {
     }
 
     //get contatos
-    public ArrayList<Pessoa>getContatos() {
+    public List<Pessoa>getContatos() {
         ordenarListaDeContatos();
         return contatos;
     }
 
-    public void setContatos(ArrayList<Pessoa> novosContatos){
+    public void setContatos(List<Pessoa> novosContatos){
         this.contatos = novosContatos;
     }
 
     @Override
     public String toString(){
 
-        if (this.getContatos().size() == 0){
+        if (this.getContatos().isEmpty()){
             return "null";
         }
         else{
-            ArrayList<String> listaNomesAgenda = new ArrayList<String>();
+            ArrayList<String> listaNomesAgenda = new ArrayList<>();
         
         for (Pessoa pessoa : this.contatos){
             listaNomesAgenda.add(pessoa.getEmail());
         }
 
-        String contatosString = String.join("/", listaNomesAgenda);
-        return contatosString;
+        return String.join("/", listaNomesAgenda);
         }
     }
 
